@@ -1,0 +1,55 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        
+        stack <char> st;
+        st.push('#');
+        
+        for(int i = 0 ; i < s.size();i ++)
+        {
+            switch(s[i])
+            {
+                case ')':
+                    if(st.top()=='(')
+                    {
+                        st.pop();
+                    }
+                    else
+                    {
+                            return false;
+                    }
+                    break;
+                case '}':
+                     if(st.top()=='{')
+                    {
+                        st.pop();
+                    }
+                    else
+                    {
+                            return false;
+                    }
+                    break;
+                  case ']':
+                     if(st.top()=='[')
+                    {
+                        st.pop();
+                    }
+                    else
+                    {
+                            return false;
+                    }
+                    break;
+                    
+                default:
+                    st.push(s[i]);
+                    break;
+            }
+            
+        }
+        if(st.top() == '#')
+                return true;
+        
+        return false;
+        
+    }
+};

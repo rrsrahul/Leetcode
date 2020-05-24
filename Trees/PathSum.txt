@@ -1,0 +1,64 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    set<int> s;
+   int leaf(TreeNode* root)
+{
+      
+       if(!root)
+       {
+           return 0 ;
+       }
+    if(root->left==NULL && root->right==NULL)
+    {
+        cout<<root->val<<endl;
+        return root->val;
+        
+    }
+       if(root->left)
+       {
+         return root->val +  leaf(root->left);
+       }
+           
+    if(root->right)
+       {
+           return root->val + leaf(root->right);
+       }
+       return 0;
+  
+}
+    bool hasPathSum(TreeNode* Node, int sum) {
+        
+      if (Node == NULL)  
+    {  
+        return false;  
+    }  
+      
+    else
+    {  
+        bool ans = 0;  
+      
+        /* otherwise check both subtrees */
+        int subSum = sum - Node->val;  
+      
+        /* If we reach a leaf node and sum becomes 0 then return true*/
+        if ( subSum == 0 && Node->left == NULL && Node->right == NULL )  
+        return 1;  
+      
+        if(Node->left)  
+            ans = ans || hasPathSum(Node->left, subSum);  
+        if(Node->right)  
+            ans = ans || hasPathSum(Node->right, subSum);  
+      
+        return ans;  
+    }  
+    }
+};
