@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maxArea(vector<int>& h) {
+        int n = h.size()-1;
+        
+        int l =0;
+        int r = n;
+        int a = INT_MIN;
+        while(l<r)
+        {
+           a = max(a,min(h[l],h[r])*(r-l));
+            if(h[l]<h[r])
+            {
+                l++;
+            }
+            else
+            {
+                r--;
+            }
+            
+        }
+      return a;  
+        
+        
+    }
+};
