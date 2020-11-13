@@ -1,0 +1,38 @@
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+       int n1 = num1.size();
+        int n2 = num2.size();
+        
+        vector<char> v(n1+n2,'0');
+       // string ans="";
+        for(int i =n1-1;i>=0;i--)
+        {
+            int carry=0;
+            for(auto j=n2-1;j>=0;j--)
+            {
+
+                int temp =  v[i+j+1]-'0'+ (num1[i]-'0')*(num2[j]-'0')+carry;
+                v[i+j+1]=temp%10 +'0';
+                carry = temp/10;
+            }
+            v[i]+=carry;
+        }
+        
+        string ans="";
+        bool flag=false;
+        for(auto it:v)
+        {
+            if(it!='0' || flag==true)
+            {
+                flag=true;
+                ans=ans+it;
+            }
+        }
+        if(flag==false)
+        {
+            return "0";
+        }
+        return ans;
+    }
+};
